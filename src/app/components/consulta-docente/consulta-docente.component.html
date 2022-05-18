@@ -1,6 +1,6 @@
 <div>
 
-    <form class="content"  >
+    <form class="content"  (ngSubmit)="listaDocente()">
 
 
     <div class="submit-form" >
@@ -20,6 +20,13 @@
                 <div class="col-lg-2">
                     <input type="text" class="form-control" name="dni" id="dni"  [(ngModel)]= "dni" />
                 </div>
+
+                <div class="form-check form-switch col-lg-2">
+                    <input class="form-check-input" name="estado" [(ngModel)]= "estado" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">  Estado</label>
+                </div>
+
+
                 <div class="col-lg-2">
                     <button class="btn btn-success"  >Filtrar</button>
                 </div>
@@ -68,9 +75,19 @@
                             <th>Nombre</th>
                             <th>DNI</th>
                             <th>Ubigeo</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
+
+                        <tr *ngFor="let aux of docentes">
+                            <td>{{ aux.idDocente }}</td>
+                            <td>{{ aux.nombre }}</td>
+                            <td>{{ aux.dni }}</td>
+                            <td>{{ aux.ubigeo!.departamento }} - {{ aux.ubigeo!.provincia }} - {{ aux.ubigeo!.distrito }}</td>
+                            <td>{{ aux.estado==1?"Activo":"Inactivo" }}</td>
+
+                        </tr>
                             
 
                     </tbody>

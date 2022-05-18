@@ -17,6 +17,7 @@ export class ConsultaDocenteComponent implements OnInit {
   selDepartamento:string = "-1"; 
   selProvincia:string = "-1"; 
   selDistrito:number = -1;
+  estado:number|boolean =0;
 
   
   //Ubigeo
@@ -46,6 +47,23 @@ export class ConsultaDocenteComponent implements OnInit {
             (x)  => this.distritos = x      
       );
       this.selDistrito = -1;
+  }
+
+  listaDocente() {
+    //let newestado;
+   /*  if(this.estado === true){
+      newestado = 1;
+    }else{
+      newestado=0;
+    } */
+    //alert(this.estado)
+    
+    this.docenteService.listaDocente(this.nombre,this.dni,this.selDistrito,(this.estado === true ? 1 : 0)).subscribe(
+      (x) => {
+        this.docentes = x.data;
+        alert(x.mensaje);
+      }
+    );
   }
 
 
